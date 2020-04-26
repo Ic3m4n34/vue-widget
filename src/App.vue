@@ -1,17 +1,65 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <swiper ref="mySwiper" :options="swiperOptions">
+    <swiper-slide>
+      <iframe
+        class="iframe"
+        src="contact.html"
+        name="iframe"
+        scrolling="yes"
+        frameborder="0"
+        marginheight="0px"
+        marginwidth="0px"
+      >
+      </iframe>
+    </swiper-slide>
+    <swiper-slide>
+      <iframe
+        class="iframe"
+        src="example.html"
+        name="iframe"
+        scrolling="yes"
+        frameborder="0"
+        marginheight="0px"
+        marginwidth="0px"
+      >
+      </iframe>
+    </swiper-slide><swiper-slide>
+      <iframe
+        class="iframe"
+        src="gallery.html"
+        name="iframe"
+        scrolling="yes"
+        frameborder="0"
+        marginheight="0px"
+        marginwidth="0px"
+      >
+      </iframe>
+    </swiper-slide>
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      swiperOptions: {
+        pagination: {
+          el: '.swiper-pagination',
+        },
+      },
+    };
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    },
+  },
+  mounted() {
+    console.log('Current Swiper instance object', this.swiper);
   },
 };
 </script>
@@ -23,6 +71,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100vh;
+}
+
+.swiper-container,
+.swiper-wrapper,
+.swiper-slide,
+.iframe {
+  min-height: 100vh;
+}
+
+.swiper-slide {
+  background: lightblue;
+}
+
+.iframe {
+  width: 90%;
+  background: #ffffff;
 }
 </style>
