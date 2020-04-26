@@ -1,33 +1,16 @@
 <template>
   <div id="app">
-    <swiper ref="mySwiper" :options="swiperOptions">
-    <swiper-slide>
+    <swiper
+      ref="mySwiper" :options="swiperOptions"
+      v-touch="touchHandler"
+    >
+    <swiper-slide
+      v-for="(iframe, i) in cookedIframeUrls"
+      :key="i"
+    >
       <iframe
         class="iframe"
-        src="contact.html"
-        name="iframe"
-        scrolling="yes"
-        frameborder="0"
-        marginheight="0px"
-        marginwidth="0px"
-      >
-      </iframe>
-    </swiper-slide>
-    <swiper-slide>
-      <iframe
-        class="iframe"
-        src="example.html"
-        name="iframe"
-        scrolling="yes"
-        frameborder="0"
-        marginheight="0px"
-        marginwidth="0px"
-      >
-      </iframe>
-    </swiper-slide><swiper-slide>
-      <iframe
-        class="iframe"
-        src="gallery.html"
+        :src="iframe"
         name="iframe"
         scrolling="yes"
         frameborder="0"
@@ -44,6 +27,12 @@
 <script>
 export default {
   name: 'app',
+  props: {
+    iframeUrls: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       swiperOptions: {
@@ -54,12 +43,22 @@ export default {
     };
   },
   computed: {
+    cookedIframeUrls() {
+      return this.iframeUrls.split(',').map(url => url.trim());
+    },
     swiper() {
       return this.$refs.mySwiper.$swiper;
     },
   },
+  methods: {
+    touchHandler() {
+      // alert('touched');
+    },
+  },
   mounted() {
     console.log('Current Swiper instance object', this.swiper);
+    // const cookedUrls = this.iframeUrls.split(',');
+    // console.log(cookedUrls);
   },
 };
 </script>
