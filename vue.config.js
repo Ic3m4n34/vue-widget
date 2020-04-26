@@ -10,6 +10,6 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.optimization.delete('splitChunks');
-    config.filenameHashing('false');
   },
+  filenameHashing: false,
 };
