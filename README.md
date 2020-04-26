@@ -1,4 +1,5 @@
 # vue-widget
+https://itnext.io/vuidget-how-to-create-an-embeddable-vue-js-widget-with-vue-custom-element-674bdcb96b97
 
 ## Project setup
 ```
